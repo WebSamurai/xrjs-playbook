@@ -19,7 +19,4 @@ source.subscribe(
   error:(err)=>{console.log(err)},
   complete:()=>{console.log('Observable is completed')}
 }
-)
-
-
-()
+);

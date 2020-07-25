@@ -1,25 +1,24 @@
-import {Observable} from 'rxjs';
-let list=[1,2,3,4]
-let source= Observable.create((obs)=>{
-  let i=0;
-  let interval=setInterval(()=>{
-    i++;
-   obs.next(i)
-  },1000)
-  setTimeout(()=>{
-    clearInterval(interval);
-   obs.complete()
-  
-  },10000)
-});
+import {fromEvent} from 'rxjs'
+const button=document.getElementById('button')
+const output=document.getElementById('output')
 
-source.subscribe(
-{
-  next:(x)=>{console.log(x)},
-  error:(err)=>{console.log(err)},
-  complete:()=>{console.log('Observable is completed')}
+let source = fromEvent(button,'click');
+
+function load(url:string){
+  let xhr= new XMLHttpRequest();
+  xhr.addEventListener('load',()=>{
+    let movies= JSON.parse(xhr.responseText);
+     for(let movie of movies){
+         let div= document.createElement('div');
+         div.innerHTML=movie.title;
+         output.appendChild(div);
+     }
+  });
+ xhr.open('GET',url);
+ xhr.send()
+
 }
-)
-
-
-()
+source.subscribe(x=>{
+  console.log(x)
+ load('movies.json')
+})
