@@ -1,0 +1,68 @@
+ **steps to setup local enviroment for rxjs devlopment with Typescript**
+
+ Step -1
+ install type script globaly  using
+  
+  npm install -g typescript
+
+Step -2
+create folder application and create the package.json using
+npm init -y
+
+Step -3
+* install webpack and typescript depencies
+
+npm install webpack webpack-cli webpack-dev-server --save-dev
+
+* install typescript using
+npm install typescript --force --save-dev
+
+* install ts-loader
+npm install  ts-loader --save-dev
+
+step -6 
+Configure tsconfig.json
+{
+    "compilerOptions": {
+      "module": "commonjs",
+      "target": "es5",
+      "sourceMap": true,
+
+    },
+    "exclude": [
+      "node_modules"
+    ]
+  }
+
+  step -7
+   Create a webpack configuration file webpack.config.js
+
+const path = require('path');
+
+module.exports = {
+  entry: path.join(__dirname, './src/index.ts'),
+  devtool: 'inline-source-map',
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ],
+  },
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+};
+
+
+ step -8
+ Go to the package.json file and add the start script.
+ "scripts": {
+    "start": "webpack-dev-server --mode development"
+},
