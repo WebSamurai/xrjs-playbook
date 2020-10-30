@@ -1,0 +1,99 @@
+Hi all my name is Priyanshu 
+Welcome to my you tube channel  
+This is the first video of rxjs tutorial series 
+ In This video we are coverting some basic topic such as
+ * what is rxjs.
+ * what is observable
+ * reactive promgraming
+ 
+ * What is rxjs ?
+ RXJS library is library which allows building the  asynchronous and event base  program by using the observable sequence
+This this the extension of the observer pattern
+Let first understand the observer pattern.
+In this pattern there is an objects   called subject  and which contains the it  the list of  oberservers
+Subject is the object which emit the event and all subscribers automatically know the change as append in asyncrous way.
+Let take example of tweeter if some is has tween which is you follow .
+Then immediate you will get the notification.
+Then the person who tweet He is subject and notification receiver is observer.
+
+Rxjs library is just bit head of this implementation use the observable sequences.
+You may heard the term call the observable 
+
+The core hart of the rxjs library is the observable sequences.
+But what is the  observable ?
+Observable are the continuous value producing stream  over the time which can be observe by Observer
+We can compere the observable by the river and water which is continewly flow is the value 
+Observers are the human which take the water on by demand when the need but
+River is continuously flowing.
+
+Observable can generate one or more value.
+
+rxjs is is the reactive programing library.
+Now lets  understand the reactive programing is?
+
+Imagine the scenarios
+ where you send the http request to the server and you are waiting 
+For the response which comes in the future and once the data arrive you have to react .
+Or
+Waiting for the click on the button and react on on the click
+Watching the mouse movement event and react on it
+Rxjs is design to work this kind of scenario where the interesting event and activities happen sometime in the future.
+
+RXJS library provider the bunch of operator to work with the observable sequence.
+Now we are  familiar with the RXjS library. 
+
+We using the the simple vanila javascript to explore this library and 
+Will we go over 100  operator in the series.
+Let setup the simple web page with the rxjs library .
+Let move the code editor.
+I folder open  rxjs and we on nothing but the index.hml page on it. 
+We are going to install the rxjs library using npm package 
+Let initiate the package.json by npm init command.
+I have to answer the fiew question in order to generate the pakckage.json file .
+I am giving default by pressing just enter.
+
+Install  rxjs  by command 
+npm install rxjs --save
+
+Let take advantage of latest feature of javascript i.e es6
+We need some tools to compile the it 
+Let install the something called fweback , webpack server and typescrpt for 
+bundling and compiling the es6 code into javscript by folowing command
+npm install webpack webpack-dev-server  typescript ts-loader  webpack-cli  --dev --save
+
+This the minimul setup to start experimentation with the rxjs library.
+
+Lets setup the typescript compiler option 
+Create the tsconfig.json
+
+{ 
+    "compilerOptions": {
+   "target": "ES5" ,
+   "module": "CommonJS",
+   "sourceMap": true
+}
+}  
+
+Let create  webpack.config.js file and setup the configuration for for webpack
+
+
+const path = require('path');
+module.exports = {
+    entry: path.join(__dirname, '/app.ts'),
+    output: {
+        filename: 'app.js',
+        path: __dirname
+    },
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                loader: 'ts-loader',
+                exclude: /node_modules/,
+            },
+        ]
+    },
+    resolve: {
+        extensions: [".tsx", ".ts", ".js"]
+    },
+};
